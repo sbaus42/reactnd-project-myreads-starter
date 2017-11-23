@@ -10,7 +10,7 @@ class BookShelf extends Component {
         <h2 className="bookshelf-title">Component Test</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {books.forEach((book) => (
+            {books.map((book) => (
               <li key={book.id}>
                 <Book bookInfo={book} />
               </li>

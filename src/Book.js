@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 
 class Book extends Component {
   render() {
-    let  { title, authors, previewLink } = this.props.bookInfo
-    // Default values
-    // let [title, authors, previewLink] = ["","",""]
+    let  { title, authors, imageLinks } = this.props.bookInfo
 
     return (
       <div className="book">
@@ -13,7 +11,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${previewLink}")` }}>
+              backgroundImage: `url("${imageLinks.thumbnail}")` }}>
           </div>
           <div className="book-shelf-changer">
             <select>
