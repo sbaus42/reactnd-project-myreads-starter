@@ -16,7 +16,6 @@ class BooksApp extends Component {
 
   render() {
     const { books } = this.state
-    console.log(books)
 
     return (
       <div className="app">
