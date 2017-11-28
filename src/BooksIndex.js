@@ -10,7 +10,7 @@ class BooksIndex extends Component {
   }
 
   render() {
-    const { books } = this.props
+    const { books, handleChange } = this.props
 
     let shelfs = {}
 
@@ -41,6 +41,7 @@ class BooksIndex extends Component {
               <BookShelf
                 books={shelf.books}
                 title={shelf.title}
+                handleChange={handleChange}
                 key={shelf.title} />
             ))}
           </div>
