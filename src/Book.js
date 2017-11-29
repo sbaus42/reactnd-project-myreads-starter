@@ -4,6 +4,8 @@ const Book = (props) => {
   let { title, authors, imageLinks, id, shelf } = props.bookInfo
   let { handleChange, bookInfo } = props
 
+  shelf = shelf || 'none'
+
   return (
     <div className="book">
       <div className="book-top">
@@ -26,7 +28,7 @@ const Book = (props) => {
         </div>
       </div>
       <div className="book-title">{title}</div>
-      {authors.map(author =>
+      {authors && authors.map(author =>
         <div className="book-authors" key={author}>{author}</div>
       )}
     </div>

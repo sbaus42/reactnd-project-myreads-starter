@@ -30,7 +30,9 @@ class BooksApp extends Component {
 
     return (
       <div className="app">
-        <Route path="/search" component={SearchBook} />
+        <Route path="/search" render={() =>
+          <SearchBook handleChange={this.updateBook} />
+        } />
         <Route exact path='/' render={() =>
           <BooksIndex
             books={books}
