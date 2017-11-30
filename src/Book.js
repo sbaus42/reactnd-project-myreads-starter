@@ -1,10 +1,11 @@
 import React from 'react'
+import noThumbnail from '../public/images/img_no_thumb.jpg'
 
 const Book = (props) => {
   let { title, authors, imageLinks, id, shelf } = props.bookInfo
   let { handleChange, bookInfo } = props
 
-  shelf = shelf || 'none'
+  const thumbnail = imageLinks ? imageLinks.thumbnail : noThumbnail
 
   return (
     <div className="book">
@@ -13,12 +14,13 @@ const Book = (props) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url("${imageLinks.thumbnail}")` }}>
+            backgroundImage: `url("${thumbnail}")`,
+            backgroundSize: 'contain' }}>
         </div>
         <div className="book-shelf-changer">
           <select onChange={(event) => {handleChange(bookInfo, event.target.value)}}
             id={id}
-            defaultValue={shelf}>
+            defaultValue={shelf || 'none'}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>

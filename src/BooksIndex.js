@@ -28,8 +28,6 @@ const BooksIndex = (props) => {
     component_shelfs.push(shelfs[shelf])
   }
 
-  console.log(shelfs)
-
   return (
     <div className="list-books">
       <div className="list-books-title">

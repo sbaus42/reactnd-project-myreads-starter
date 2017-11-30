@@ -5,23 +5,25 @@ import Book from './Book'
 
 class SearchBook extends Component {
   state = {
-    foundBooks: []
+    foundBooks: [],
+    error: false
   }
 
   searchStuff = (query) => {
+    query = query.trim() || "_"
+
     BooksAPI.search(query).then(response => {
-      response = response || {}
-      console.log(response)
-      if(response.hasOwnProperty('error') || response === {}) {
-        this.setState({ foundBooks: [] })
+      if(response.hasOwnProperty('error') || Object.keys(response).length === 0) {
+        this.setState({ foundBooks: [], error: true })
       } else {
-        this.setState({foundBooks: response})
+        this.setState({ foundBooks: response, error: false })
       }
     })
   }
 
   render() {
-    const handleChange = this.props.handleChange
+    const { handleChange } = this.props
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -31,17 +33,21 @@ class SearchBook extends Component {
               type="text"
               placeholder="Search by title or author"
               onChange={(event) => {this.searchStuff(event.target.value)}}
-              />
+            />
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            {this.state.foundBooks.map(book => (
-              <li key={book.id}>
-                <Book bookInfo={book} handleChange={handleChange}/>
-              </li>
-            ))}
-          </ol>
+          {this.state.error ? (
+            <p>No results found</p>
+            ) : (
+            <ol className="books-grid">
+              {this.state.foundBooks.map(book => (
+                <li key={book.id}>
+                  <Book bookInfo={book} handleChange={handleChange}/>
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       </div>
     )
