@@ -1,6 +1,7 @@
 import React from 'react'
 import BookShelf from './BookShelf'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const BooksIndex = (props) => {
   let humanize = (camelCasedTitle) => {
@@ -49,6 +50,11 @@ const BooksIndex = (props) => {
       </div>
     </div>
   )
+}
+
+BooksIndex.propTypes = {
+  books: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired
 }
 
 export default BooksIndex

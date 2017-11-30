@@ -1,5 +1,6 @@
 import React from 'react'
 import noThumbnail from '../public/images/img_no_thumb.jpg'
+import PropTypes from 'prop-types'
 
 const Book = (props) => {
   let { title, authors, imageLinks, id, shelf } = props.bookInfo
@@ -35,6 +36,11 @@ const Book = (props) => {
       )}
     </div>
   )
+}
+
+Book.propTypes = {
+  bookInfo: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired
 }
 
 export default Book
