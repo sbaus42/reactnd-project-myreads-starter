@@ -25,18 +25,30 @@ class BooksApp extends Component {
     })
   }
 
+  getShelf = (bookID) => {
+    let book = this.state.books.filter(book => book.id === bookID)[0]
+    if (book) {
+      return book.shelf
+    } else {
+      return 'none'
+    }
+  }
+
   render() {
     const { books } = this.state
 
     return (
       <div className="app">
         <Route path="/search" render={() =>
-          <SearchBook handleChange={this.updateBook} />
+          <SearchBook
+            handleChange={this.updateBook}
+            getShelf={this.getShelf} />
         } />
         <Route exact path='/' render={() =>
           <BooksIndex
             books={books}
-            handleChange={this.updateBook} />
+            handleChange={this.updateBook}
+            getShelf={this.getShelf} />
         } />
       </div>
     )

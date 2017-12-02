@@ -10,7 +10,7 @@ const BooksIndex = (props) => {
       .replace(/^./, (str) => str.toUpperCase())
   }
 
-  const { books, handleChange } = props
+  const { books, handleChange, getShelf } = props
 
   let shelfs = {}
   let component_shelfs = []
@@ -41,6 +41,7 @@ const BooksIndex = (props) => {
               books={shelf.books}
               title={shelf.title}
               handleChange={handleChange}
+              getShelf={getShelf}
               key={shelf.title} />
           ))}
         </div>

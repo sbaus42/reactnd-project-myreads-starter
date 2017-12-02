@@ -3,10 +3,11 @@ import noThumbnail from '../public/images/img_no_thumb.jpg'
 import PropTypes from 'prop-types'
 
 const Book = (props) => {
-  let { title, authors, imageLinks, id, shelf } = props.bookInfo
-  let { handleChange, bookInfo } = props
+  let { title, authors, imageLinks, id } = props.bookInfo
+  let { handleChange, bookInfo, getShelf } = props
 
   const thumbnail = imageLinks ? imageLinks.thumbnail : noThumbnail
+  const displayShelf = getShelf(id)
 
   return (
     <div className="book">
@@ -21,7 +22,7 @@ const Book = (props) => {
         <div className="book-shelf-changer">
           <select onChange={(event) => {handleChange(bookInfo, event.target.value)}}
             id={id}
-            defaultValue={shelf || 'none'}>
+            defaultValue={displayShelf}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
